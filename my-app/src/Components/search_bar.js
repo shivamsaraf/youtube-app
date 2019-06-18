@@ -17,6 +17,8 @@ class SearchBar extends React.Component{
                value={this.state.term}
 			   onChange={this.onInputChange} />
 			<br/>Value is {this.state.term}
+
+			
 			</div>
 
 			);
