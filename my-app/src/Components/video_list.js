@@ -1,16 +1,20 @@
 import React from 'react';
+import './style.css';
 import VideoListItem from './video_list_item';
 
 const VideoList = (props)=>{
    
    const videoItems=props.videos.map((video)=>{
-       return <VideoListItem key={video.etag} video={video} />
+       return <VideoListItem 
+                  onVideoSelect={props.onVideoSelect}
+                  key={video.etag} 
+                  video={video} />
    });
    
 
    return(
    	<ol className="col-md-4 list-group">
-   	  {props.videos.length}fdf<br/>haa{videoItems}
+   	  {props.videos.length}videos{videoItems}
    	 </ol>
 
 

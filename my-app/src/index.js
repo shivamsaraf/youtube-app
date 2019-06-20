@@ -9,9 +9,15 @@ const API_KEY="AIzaSyCnv8k7XTtFFq4vZ787DI1pxHcW-x3pJXY";
 class App extends React.Component{
 	constructor(props){
 		super(props);
-		this.state={videos:[]};
-		YTSearch({key:API_KEY,term:'surfboards'},(videos)=>{
-			this.setState({videos});//equal to this.setState({videos:videos});
+		this.state={
+			videos:[],
+			selectedVideo:null
+		};
+		YTSearch({key:API_KEY,term:'lok sabha'},(videos)=>{
+			this.setState({
+			videos:videos,
+			selectedVideo:videos[0]
+			});//equal to this.setState({videos:videos});
 		});
 	}
 
@@ -22,8 +28,10 @@ class App extends React.Component{
 			<div>
 			Shivam saraf
 			<SearchBar />
-			<VideoDetail video={this.state.videos[0]} />
-			<VideoList videos={this.state.videos} />
+			<VideoDetail video={this.state.selectedVideo} />
+			<VideoList 
+               onVideoSelect={selectedVideo=>this.setState({selectedVideo})}
+			   videos={this.state.videos} />
 			</div>
 			);
 	}

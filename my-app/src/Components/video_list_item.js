@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 const VideoListItem=(props)=>{
 	const video=props.video;//we can remove this line and write {video} instead of props in previous line
@@ -6,7 +7,7 @@ const VideoListItem=(props)=>{
 
 
 	return (
-		<li className="list-group-item">
+		<li onClick={()=>props.onVideoSelect(video)} className="list-group-item">
 		  <div className="video-list media">
 		    <div className="media-left">
 		      <img className="media-object" src={imageUrl}/>

@@ -1,0 +1,28 @@
+.search-bar{
+	margin:3.04vh;
+	text-align: center;
+}
+.search-bar input{
+	width: 75%;
+}
+
+.video-item img{
+	max-width: 9.74vh;
+}
+
+.video-detail .details{
+
+	margin-top:1.52vh;
+	padding:1.52vh;
+	border: 0.15vh solid #ddd;
+	border-radius: 0.608vh;
+}
+
+.list-group-item{
+    cursor: pointer;
+}
+
+.list-group-item:hover{
+	background-color: #eee;
+
+}
