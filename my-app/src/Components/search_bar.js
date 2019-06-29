@@ -5,7 +5,7 @@ import './style.css';
 class SearchBar extends React.Component{
 	constructor(props){
 		super(props);
-		this.state={term:'Salil'};
+		this.state={term:'Search Here'};
 		this.onInputChange=this.onInputChange.bind(this);
 	}
 
@@ -30,6 +30,7 @@ class SearchBar extends React.Component{
 		this.setState({
 			term:event.target.value
 		});
+		this.props.onSearchTermChange(event.target.value);
 	}
 }
 

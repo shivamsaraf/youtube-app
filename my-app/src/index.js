@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './Components/search_bar';
@@ -13,21 +14,32 @@ class App extends React.Component{
 			videos:[],
 			selectedVideo:null
 		};
-		YTSearch({key:API_KEY,term:'lok sabha'},(videos)=>{
+		this.videoSearch('tamasha');
+		
+	}
+
+	videoSearch(term){
+		YTSearch({key:API_KEY,term:term},(videos)=>{
 			this.setState({
 			videos:videos,
-			selectedVideo:videos[0]
+			selectedVideo:videos[1]
 			});//equal to this.setState({videos:videos});
 		});
+
+
+
+
 	}
 
 
 
 	render(){
+
+		const videoSearch=_.debounce((term)=>{this.videoSearch(term)},300);
 		return(
 			<div>
 			Shivam saraf
-			<SearchBar />
+			<SearchBar onSearchTermChange={videoSearch} />
 			<VideoDetail video={this.state.selectedVideo} />
 			<VideoList 
                onVideoSelect={selectedVideo=>this.setState({selectedVideo})}
