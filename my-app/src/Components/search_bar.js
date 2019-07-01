@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+///"test": "echo \"Error: no test specified\" && exit 1"
 
 
 class SearchBar extends React.Component{
