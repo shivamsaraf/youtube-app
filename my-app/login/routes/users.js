@@ -1,6 +1,9 @@
 const express=require('express');
-
+const bcrypt=require('bcryptjs');
 const router=express.Router();
+
+
+const User=require('../model/User');
 
 
 //login page
@@ -31,12 +34,43 @@ router.post('/register',(req,res)=>{
 	if(errors.length>0){
 		res.render('register',{
 			errors,
-			email,
-			password,
-			password2
+			name,
+			email
 		});
 	}else{
-		res.send('badhiyaa');
+		//validation passed
+		User.findOne({email:email})
+		.then(user=>{
+			if(user){
+				//user exist
+				errors.push({msg:'email already registered'});
+				res.render('register',{
+				errors,
+				email
+		      });
+			} else {
+				const newUser = new User({
+					name,
+					email,
+					password
+				});
+				//hash pwd
+				bcrypt.genSalt(10,(err,salt)=>{
+					bcrypt.hash(newUser.password,salt,(err,hash)=>{
+						if(err)throw err;
+						//set new pwd to hash
+						newUser.password=hash;
+						//save user
+						newUser.save()
+						 .then(user=>{
+						 	res.redirect('/login');
+						 })
+						 .catch(err=>console.log(err));
+					})
+				})
+
+			}
+		});
 	}
 });
 
